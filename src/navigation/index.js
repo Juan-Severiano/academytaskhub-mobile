@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBottomTabNavigator, } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import HomeScreen from '../views/HomeScreen'
 import testScreen from '../views/testScreen'
@@ -55,6 +55,8 @@ export default props => (
     <Tab.Screen name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
     <Tab.Screen name='YourTasks' component={YourTasks} options={{ tabBarLabel: 'YourTasks' }} />
     <Tab.Screen name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
+    <Tab.Screen name='Login' component={Login} options={{ tabBarLabel: 'Login' }} />
+
 
   </Tab.Navigator>
 )

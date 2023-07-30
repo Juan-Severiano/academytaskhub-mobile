@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default class Login extends Component {
   state = {
@@ -14,6 +15,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
         <TextInput 
           placeholder='email@aluno.ce.gov.br'
           style={styles.input}
@@ -30,9 +32,11 @@ export default class Login extends Component {
           onChangeText={password => this.setState({ password })}
         />
         <TouchableOpacity onPress={this.login} style={styles.buttom}>
-          <Text style={styles.buttomText}>Entar</Text>
+          <Text style={styles.buttomText}>Entrar  <Ionicons name='send' size={20} color='#fff' /></Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.login} style={styles.buttom}>
+        <TouchableOpacity 
+          onPress={() => Linking.openURL('https://academytaskhub.pythonanywhere.com/auth/register/')} 
+          style={styles.buttom} >
           <Text style={styles.buttomText}>Criar nova conta ...</Text>
         </TouchableOpacity>
       </View>
@@ -46,21 +50,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    color: '#343a40',
+    width: '80%',
+  },
   buttom: {
     marginTop: 30,
     padding: 10,
-    backgroundColor: '#0068d9'
+    backgroundColor: '#0068d9',
+    width: '80%',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttomText: {
     fontSize: 20,
-    color: '#fff'
+    color: '#fff',
   },
   input: {
     marginTop: 20,
-    width: '90%',
+    width: '80%',
     backgroundColor: '#eee',
     height: 40,
     borderWidth: 1,
-    borderColor: '#333'
-  }
+    borderColor: '#333',
+    padding: 10,
+    borderRadius: 10,
+  },
 })

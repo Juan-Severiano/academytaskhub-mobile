@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default class Perfil extends Component {
   logout = () => {
-
+    this.props.navigation.navigate('Login')
   }
 
   render() {
@@ -12,8 +12,8 @@ export default class Perfil extends Component {
     return (
       <View style={styles.container}>
         <Ionicons name='person-circle-outline' style={styles.avatar} size={200} color='#000' />
-        <Text style={styles.nickname}>Fulaninho</Text>
-        <Text style={styles.email}>fulano@aluno.ce.gov.br</Text>
+        <Text style={styles.nickname}>Francisco Juan de Sousa Severiano</Text>
+        <Text style={styles.email}>francisco.severiano5@aluno.ce.gov.br</Text>
         <TouchableOpacity onPress={this.logout} style={styles.buttom}>
           <Text style={styles.buttomText}>Sair</Text>
         </TouchableOpacity>
