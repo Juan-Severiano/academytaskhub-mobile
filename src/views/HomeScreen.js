@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Dimensions, FlatList } from 'react-native'
-import { Icon } from 'react-native-elements'
-import Ionicons from '@expo/vector-icons/Ionicons'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Card from '../components/Card'
 
 export default class HomeScreen extends Component {
