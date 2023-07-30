@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator, } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import HomeScreen from '../views/HomeScreen'
 import testScreen from '../views/testScreen'
@@ -7,6 +7,7 @@ import Filter from '../views/FilterScreen'
 import YourTasks from '../views/YourTasksScreen'
 import Add from '../views/AddScreen'
 import Perfil from '../views/PerfilScreen'
+import Login from '../views/Login'
 
 const Tab = createBottomTabNavigator()
 

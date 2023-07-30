@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import FontAwesomeIcon from '@expo/vector-icons/FontAwesome'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
@@ -12,9 +12,9 @@ export default class Header extends Component {
       <View style={styles.container}>
         <View style={styles.row}>
           <Image source={icon} style={styles.img} />
-          <TouchableWithoutFeedback>
+          <TouchableOpacity>
             <Ionicons name='notifications-outline' size={28} color='#000' />
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </View>
     )
