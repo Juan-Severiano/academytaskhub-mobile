@@ -7,7 +7,7 @@ import Header from './src/components/Header'
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#d9d9d9' }}>
       <Header />
       <NavigationContainer>
         <Navigation />

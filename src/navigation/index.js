@@ -47,9 +47,10 @@ export default props => (
       },
       tabBarActiveTintColor: 'black',
       tabBarInactiveTintColor: 'gray',
+      tabBarStyle: { backgroundColor: '#d9d9d9' },
       headerShown: false,
     })}
-  >
+ >
     <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ tabBarLabel: 'Tarefas' }} />
     <Tab.Screen name='Filter' component={Filter} options={{ tabBarLabel: 'Filter' }} />
     <Tab.Screen name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
