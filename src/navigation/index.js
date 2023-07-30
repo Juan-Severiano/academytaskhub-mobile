@@ -25,11 +25,12 @@ export default props => (
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
-      tabBarActiveTintColor: 'tomato',
+      tabBarActiveTintColor: 'black',
       tabBarInactiveTintColor: 'gray',
+      headerShown: false,
     })}
   >
-  <Tab.Screen name='HomeScreen' component={HomeScreen} />
+    <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ tabBarLabel: 'Tarefas' }} />
   <Tab.Screen name='testScreen' component={testScreen} />
 
   </Tab.Navigator>

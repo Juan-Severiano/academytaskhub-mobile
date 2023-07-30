@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -7,25 +7,25 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 export default props => (
     <View style={style.card}>
       <View style={style.cardHeader}>
-        <Text style={style.cardText}>Titulo da tarefa</Text>
-      <Icon name='circle' size={25} color='#FFDE59' />
+        <Text style={style.cardText}>{ props.title }</Text>
+      <Icon name='circle' size={25} color={props.color || '#FFDE59'} />
       </View>
       <Text style={style.cardDescription}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi alias excepturi accusantium facere, natus voluptas reiciendis rem consequuntur perspiciatis maiores at, ullam pariatur quaerat. Incidunt in mollitia alias beatae eligendi?
+        { props.description }
       </Text>
       <View style={style.cardInfo}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon name='book' color='#000' />
-          <Text style={(style.cardDescription, style.cardInfoText)}>Disciplina</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline }</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon name='person' color='#000' />
-          <Text style={(style.cardDescription, style.cardInfoText)}>Professor</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher }</Text>
         </View>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Ionicons name='calendar-outline' color='#000' size={20} />
-        <Text style={(style.cardDescription, style.cardInfoText)}>31 de Julho de 2023 às 7h00</Text>
+        <Text style={(style.cardDescription, style.cardInfoText)}>{ props.due_date }</Text>
       </View>
     </View>
 )
