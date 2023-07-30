@@ -15,11 +15,11 @@ export default props => (
       </Text>
       <View style={style.cardInfo}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Icon name='book' color='#000' />
+          <Ionicons name='book-outline' color='#000' size={20} />
           <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline }</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Icon name='person' color='#000' />
+        <Ionicons name='person-outline' color='#000' size={20} />
           <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher }</Text>
         </View>
       </View>
