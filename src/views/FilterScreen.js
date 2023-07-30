@@ -3,15 +3,19 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import FilterComponent from '../components/Filter'
 
 export default class Filter extends Component {
+  state = {
+    filterSearch: ''
+  }
+
   add = (nome) => {
-    console.warn('adicionou')
+    this.setState({ filterSearch: nome })
   }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.filterArea}>
           <View style={{ height: 70 }}>
-
+            <FilterComponent value={this.state.filterSearch} />
           </View>
           <View style={{ width: '100%' , alignItems: 'flex-end' }}>
             <FilterComponent value='Pesquisar' color='#0dcaf0' search />
