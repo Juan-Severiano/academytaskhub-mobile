@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 
-export default class Filter extends Component {
+export default class Perfil extends Component {
   render() {
     return (
-      <Text>Filter Screen</Text>
+      <Text>Perfil Screen</Text>
     )
   }
 }
