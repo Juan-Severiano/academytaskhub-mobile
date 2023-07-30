@@ -14,7 +14,7 @@ export default class Filter extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.filterArea}>
-          <View style={{ height: 70 }}>
+          <View style={{ height: 50 }}>
             <FilterComponent value={this.state.filterSearch} />
           </View>
           <View style={{ width: '100%' , alignItems: 'flex-end' }}>
@@ -24,16 +24,16 @@ export default class Filter extends Component {
         <Text style={styles.filterBy}>Filter By</Text>
         <View style={styles.filterContainer}>
           <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
-          <FilterComponent value='asd' add={this.add} />
+          <FilterComponent value='asd1' add={this.add} />
+          <FilterComponent value='asd2' add={this.add} />
+          <FilterComponent value='asd3' add={this.add} />
+          <FilterComponent value='asd4' add={this.add} />
+          <FilterComponent value='asd5' add={this.add} />
+          <FilterComponent value='asd6' add={this.add} />
+          <FilterComponent value='asd7' add={this.add} />
+          <FilterComponent value='asd8' add={this.add} />
+          <FilterComponent value='asd98' add={this.add} />
+          <FilterComponent value='asd9' add={this.add} />
         </View>
       </View>
     )
