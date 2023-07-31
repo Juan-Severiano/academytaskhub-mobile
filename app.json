@@ -21,6 +21,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.juansev.academytaskhubmobile"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f33d2d34-d04f-4ade-b5ae-e5d0b52c6e16"
       }
     }
   }
