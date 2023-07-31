@@ -12,16 +12,16 @@ export default props => (
       <Icon name='circle' size={25} color={props.color || '#FFDE59'} />
       </View>
       <Text style={style.cardDescription}>
-        { props.description }
+        { props.content }
       </Text>
       <View style={style.cardInfo}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Ionicons name='book-outline' color='#000' size={20} />
-          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline }</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline.name }</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Ionicons name='person-outline' color='#000' size={20} />
-          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher }</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher.name }</Text>
         </View>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>

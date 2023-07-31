@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import Navigation from './src/navigation/index'
 import Header from './src/components/Header'
 import AppLoading from 'expo-app-loading';
+import { server, showError, showSuccess } from './src/commun'
+import axios from 'axios'
 import {
   useFonts,
   Poppins_400Regular,
@@ -25,6 +27,31 @@ export default function App(props) {
     Poppins_800ExtraBold_Italic,
   });
 
+  connect = async () => {
+    console.clear();
+    const headers = {
+      'Content-Type': 'application/json',
+    }
+    const body = JSON.stringify({
+      "username": "admin",
+      "password": "admin"
+    })
+    const config = {
+      method: 'POST',
+      headers: headers,
+      body: body
+    }
+    const response = await fetch(
+      'https://academy-task-hub.onrender.com/auth/api/token/',
+      config
+    );
+
+    const json = await response.json();
+
+    console.log('STATUS', response.status);
+    console.log(json.access);
+  }
+
   let fontSize = 24;
   let paddingVertical = 6;
 
@@ -33,8 +60,8 @@ export default function App(props) {
   } else {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#d9d9d9' }}>
-        <Header />
-        <NavigationContainer>
+        <Header onReady={connect()} />
+        <NavigationContainer >
           <Navigation natigation2={props.navigation} />
         </NavigationContainer>
       </SafeAreaView>
