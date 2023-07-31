@@ -15,7 +15,7 @@ import {
   Poppins_800ExtraBold_Italic,
 } from '@expo-google-fonts/poppins';
 
-export default function App() {
+export default function App(props) {
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -35,7 +35,7 @@ export default function App() {
       <SafeAreaView style={{ flex: 1, backgroundColor: '#d9d9d9' }}>
         <Header />
         <NavigationContainer>
-          <Navigation />
+          <Navigation natigation2={props.navigation} />
         </NavigationContainer>
       </SafeAreaView>
     );

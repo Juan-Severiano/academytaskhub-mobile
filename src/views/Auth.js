@@ -12,7 +12,7 @@ import {
   Poppins_800ExtraBold_Italic,
 } from '@expo-google-fonts/poppins';
 
-export default function Auth() {
+export default function Auth(props) {
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -30,7 +30,7 @@ export default function Auth() {
   } else {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#d9d9d9' }}>
-        <Login />
+        <Login navigation={props.navigation} />
       </SafeAreaView>
     );
   }

@@ -7,7 +7,6 @@ import Filter from '../views/FilterScreen'
 import YourTasks from '../views/YourTasksScreen'
 import Add from '../views/AddScreen'
 import Perfil from '../views/PerfilScreen'
-import Login from '../views/Login'
 
 const Tab = createBottomTabNavigator()
 
@@ -56,7 +55,6 @@ export default props => (
     <Tab.Screen name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
     <Tab.Screen name='YourTasks' component={YourTasks} options={{ tabBarLabel: 'YourTasks' }} />
     <Tab.Screen name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
-    <Tab.Screen name='Login' component={Login} options={{ tabBarLabel: 'Login' }} />
 
 
   </Tab.Navigator>
