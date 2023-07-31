@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
+import style from '../style'
+
 export default class Perfil extends Component {
   logout = () => {
     this.props.navigation.navigate('Login')
@@ -29,12 +31,15 @@ const styles = StyleSheet.create({
   },
   nickname: {
     marginTop: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 25,
+    fontFamily: style.fontDefault,
+    alignItems: 'center',
   },
   email: {
     marginTop: 10,
-    fontSize: 25,
+    fontSize: 20, 
+    alignItems: 'center',
+    fontFamily: style.fontMedium
   },
   buttom: {
     marginTop: 100,
@@ -44,10 +49,11 @@ const styles = StyleSheet.create({
     height: 50,
     width: 100,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   buttomText: {
     fontSize: 20,
-    color: '#fff'
+    color: '#fff',
+    fontFamily: style.fontDefault,
   }
 })

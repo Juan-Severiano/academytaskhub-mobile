@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import moment from 'moment'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Button } from 'react-native-elements'
+import style from '../style'
 
 const countries = ["Egypt", "Canada", "Australia", "Ireland"]
 
@@ -44,8 +45,8 @@ export default class Add extends Component {
           />
           <TouchableOpacity onPress={() => this.setState({ showDatePicker: true })} style={styles.date}>
             <View>
-              <Text>Data de Entrega</Text>
-              <Text>
+              <Text style={{ fontFamily: style.fontDefault }}>Data de Entrega</Text>
+              <Text style={{ fontFamily: style.fontMedium }}>
                 {moment(this.state.selectedDate).format('ddd [de] D [de] MMMM [de] YYYY [às] HH:mm')}
               </Text>
             </View>
@@ -57,6 +58,7 @@ export default class Add extends Component {
               mode="datetime"
               display="default"
               onChange={this.handleDateChange}
+              style={{ fontFamily: style.fontDefault }}
             />
           )}
           <SelectDropdown
@@ -97,25 +99,29 @@ const styles = StyleSheet.create({
   txtContainer: {
     width: '80%',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 20,
   },
   txt: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    color: '#343a40'
+    fontSize: 40,
+    fontFamily: style.fontBold,
+    color: '#343a40',
+    width: '100%',
   },
   inputArea: {
-    marginTop: 20,
+    marginTop: 10,
     width: '80%',
   },
   input: {
     backgroundColor: '#d9d9d9',
     marginVertical: 10,
     padding: 10,
-    borderRadius: 15
+    borderRadius: 15,
+    fontFamily: style.fontMedium
   },
   date: {
-    fontSize: 20,
+    fontSize: 20, 
+    fontFamily: style.fontMedium,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -132,6 +138,7 @@ const styles = StyleSheet.create({
   buttonTextStyle: {
     color: '#343a40',
     fontSize: 16,
+    fontFamily: style.fontDefault,
   },
   dropdownRow: {
     paddingVertical: 12,
@@ -140,6 +147,7 @@ const styles = StyleSheet.create({
   dropdownRowText: {
     fontSize: 12,
     color: '#343a40',
+    fontFamily: style.fontDefault,
   },
   selectedRow: {
     backgroundColor: '#343a40',
@@ -156,5 +164,6 @@ const styles = StyleSheet.create({
   buttomText: {
     fontSize: 20,
     color: '#fff',
+    fontFamily: style.fontDefault,
   },
 })

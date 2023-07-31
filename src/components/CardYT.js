@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, Button, Linking } from 'react-nativ
 import { Icon } from 'react-native-elements'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import styles from '../style'
 
 const user = {
   id: 30
@@ -52,18 +53,21 @@ const style = StyleSheet.create({
   },
   cardText: {
     fontSize: 30,
-    color: '#000'
+    color: '#000',
+    fontFamily: styles.fontDefault
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   cardDescription: {
     fontSize: 15,
+    marginBottom: 5,
     color: '#000',
-    margin: 5,
+    margin: 0,
+    fontFamily: styles.fontMedium
   },
   cardInfo: {
     flexDirection: 'row',
@@ -76,5 +80,6 @@ const style = StyleSheet.create({
     alignItems: 'center',
     color: '#000',
     paddingLeft: 5,
+    fontFamily: styles.fontMedium
   }
 })

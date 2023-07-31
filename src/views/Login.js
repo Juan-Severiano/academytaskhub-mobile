@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
+import style from '../style'
+
 export default class Login extends Component {
   state = {
     email: '',
@@ -51,9 +53,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   title: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    marginBottom: 30,
+    fontSize: 50,
+    fontFamily: style.fontBold,
+    marginBottom: 20,
     color: '#343a40',
     width: '80%',
   },
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
   buttomText: {
     fontSize: 20,
     color: '#fff',
+    fontFamily: style.fontDefault,
   },
   input: {
     marginTop: 20,
@@ -79,5 +82,6 @@ const styles = StyleSheet.create({
     borderColor: '#333',
     padding: 10,
     borderRadius: 10,
+    fontFamily: style.fontDefault,
   },
 })

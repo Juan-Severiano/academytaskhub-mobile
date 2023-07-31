@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import style from '../style'
 
 export default class FilterYT extends Component {
   render() {
@@ -21,7 +22,7 @@ export default class FilterYT extends Component {
             this.props.add(this.props.value)
           }
         }}>
-        <Text style={{ color: '#343a40' }}>
+        <Text style={{ color: '#343a40', fontFamily: style.fontMedium }}>
           {this.props.value}  {this.props.search ? <Ionicons name='search' size={15} color='#343a40' /> : false}
         </Text>
 

@@ -4,6 +4,8 @@ import Card from '../components/CardYT'
 import tasksObj from '../components/tasks'
 import FilterYT from '../components/FilterYT'
 
+import style from '../style'
+
 export default class YourTasks extends Component {
   state = {
     tasks: [...tasksObj]
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     fontSize: 45,
-    fontWeight: 'bold',
-    color: '#343a40'
+    color: '#343a40',
+    fontFamily: style.fontBold
   },
 })

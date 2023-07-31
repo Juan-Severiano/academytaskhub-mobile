@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import FilterComponent from '../components/Filter'
 
+import style from '../style'
+
 export default class Filter extends Component {
   state = {
     filterSearch: ''
@@ -54,7 +56,8 @@ const styles = StyleSheet.create({
   filterBy: {
     width: '80%',
     marginBottom: 10,
-    fontSize: 20
+    fontSize: 28,
+    fontFamily: style.fontBold,
   },
   filterArea: {
     width: '80%',
