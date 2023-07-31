@@ -42,7 +42,7 @@ export default function App(props) {
       body: body
     }
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/',
+      'https://academy-task-hub.onrender.com/auth/api/token/refresh/',
       config
     );
 
