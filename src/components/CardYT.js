@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Dimensions, Button, Linking } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Button, Linking, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -35,9 +35,13 @@ export default props => (
         <Ionicons name='calendar-outline' color='#000' size={20} />
         <Text style={(style.cardDescription, style.cardInfoText)}>{ props.due_date }</Text>
       </View>
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <Button title='apagar' />
-      <Button title='editar' onPress={() => Linking.openURL(`https://academytaskhub.pythonanywhere.com/client/update_card/${user.id}/${card.id}/`)} />
+    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 10 }}>
+      <TouchableOpacity style={style.button} onPress={() => Linking.openURL(`https://academytaskhub.pythonanywhere.com/client/update_card/${user.id}/${card.id}/`)}>
+          <Text style={style.btnTxt}>Editar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={style.buttonDelete}>
+        <Text style={style.btnTxtDel}>Apagar</Text>
+      </TouchableOpacity>
     </View>
     </View>
 )
@@ -81,5 +85,26 @@ const style = StyleSheet.create({
     color: '#000',
     paddingLeft: 5,
     fontFamily: styles.fontMedium
+  },
+  button: {
+    borderWidth: 3,
+    borderRadius: 5,
+    borderColor: '#0dcaf0',
+    paddingHorizontal: 10,
+    paddingVertical: 5
+  },
+  btnTxt: {
+    fontFamily: styles.fontDefault,
+    color: '#0dcaf0'
+  },
+  buttonDelete: {
+    borderRadius: 5,
+    backgroundColor: '#dc3545',
+    paddingHorizontal: 13,
+    paddingVertical: 8
+  },
+  btnTxtDel: {
+    fontFamily: styles.fontDefault,
+    color: '#fff'
   }
 })
