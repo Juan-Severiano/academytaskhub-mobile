@@ -9,7 +9,7 @@ export default props => (
     <View style={style.card}>
       <View style={style.cardHeader}>
         <Text style={style.cardText}>{ props.title }</Text>
-      <Icon name='circle' size={25} color={props.color || '#FFDE59'} />
+      <Icon name='circle' size={25} color={props.color || props.type === 'A' ? '#FFDE59' : '#3facac'} />
       </View>
       <Text style={style.cardDescription}>
         { props.content }

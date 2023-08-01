@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigation from './src/navigation/index'
 import Header from './src/components/Header'
-import AppLoading from 'expo-app-loading';
+import AppLoading from 'expo-app-loading'
 import { server, showError, showSuccess } from './src/commun'
 import axios from 'axios'
 import {
@@ -33,22 +33,24 @@ export default function App(props) {
       'Content-Type': 'application/json',
     };
     const body = JSON.stringify({
-      "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MDkzNjA3OCwiaWF0IjoxNjkwODQ5Njc4LCJqdGkiOiI2OTNmNmEwMmNkYTc0YzEzYmY1YjM1MWJhODZhMzBjMCIsInVzZXJfaWQiOjN9.Yu6Tt2C4xc9INgL1zPBYlJ5MNoWAhPs13p6tah-67pw"
+      "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MTAxOTU3NSwiaWF0IjoxNjkwOTMzMTc1LCJqdGkiOiJmOTQyZTRjYmU1YjA0NWIwOTM0YWViOWViMTc5YWE4NCIsInVzZXJfaWQiOjN9.j_1dP8cjIK165Vr0e9MLhUbPcb4jhIQK8UWxwqKOSn0"
     });
     const config = {
-      method: 'post',
+      method: 'POST',
       headers: headers,
       body: body
     };
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/refresh/',
+      'https://academy-task-hub.onrender.com/auth/api/token/refresh',
       config
     );
 
     const json = await response.json();
 
     console.log('STATUS', response.status);
+    console.log(json.access);
     console.log(json);
+
   }
 
   let fontSize = 24;

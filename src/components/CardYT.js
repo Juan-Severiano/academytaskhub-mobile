@@ -16,19 +16,19 @@ export default props => (
     <View style={style.card}>
       <View style={style.cardHeader}>
         <Text style={style.cardText}>{ props.title }</Text>
-      <Icon name='circle' size={25} color={props.color || '#FFDE59'} />
+      <Icon name='circle' size={25} color={props.color || props.type === 'A' ? '#FFDE59' : '#3facac' } />
       </View>
       <Text style={style.cardDescription}>
-        { props.description }
+        { props.content }
       </Text>
       <View style={style.cardInfo}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Ionicons name='book-outline' color='#000' size={20} />
-          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline }</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.discipline.name }</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Ionicons name='person-outline' color='#000' size={20} />
-          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher }</Text>
+          <Text style={(style.cardDescription, style.cardInfoText)}>{ props.teacher.name }</Text>
         </View>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -36,7 +36,7 @@ export default props => (
         <Text style={(style.cardDescription, style.cardInfoText)}>{ props.due_date }</Text>
       </View>
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 10 }}>
-      <TouchableOpacity style={style.button} onPress={() => Linking.openURL(`https://academytaskhub.pythonanywhere.com/client/update_card/${user.id}/${card.id}/`)}>
+      <TouchableOpacity style={style.button} onPress={() => Linking.openURL(`https://academy-task-hub.onrender.com/client/update_card/${3}/${props.id}/`)}>
           <Text style={style.btnTxt}>Editar</Text>
       </TouchableOpacity>
       <TouchableOpacity style={style.buttonDelete}>

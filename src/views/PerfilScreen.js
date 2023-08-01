@@ -1,21 +1,54 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { access } from '../commun'
 
 import style from '../style'
 
 export default class Perfil extends Component {
+  state = {
+    username: '',
+    email: ''
+  }
+
   logout = () => {
     this.props.navigation.navigate('Auth')
+  }
+
+  conect = async () => {
+    console.clear();
+    const headers = {
+      authorization: access
+    };
+    const config = {
+      method: 'GET',
+      headers: headers,
+    };
+
+    const response = await fetch(
+      'https://academy-task-hub.onrender.com/auth/api/user/',
+      config
+    );
+    const persons = await fetch(
+      'https://academy-task-hub.onrender.com/client/api/person/',
+      config
+    );
+
+    const json = await response.json();
+    const person = await persons.json()
+
+    console.log('STATUS', response.status)
+    console.log( 'user', json.results[2])
+    this.setState({ username: json.results[2].username, email: json.results[2].email })
   }
 
   render() {
     const options = { email: 'sla@aluno.ce.gov.br', secure: true }
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onReady={this.conect()}>
         <Ionicons name='person-circle-outline' style={styles.avatar} size={200} color='#000' />
-        <Text style={styles.nickname}>Francisco Juan de Sousa Severiano</Text>
-        <Text style={styles.email}>francisco.severiano5@aluno.ce.gov.br</Text>
+        <Text style={styles.nickname}>{this.state.username}</Text>
+        <Text style={styles.email}>{this.state.email}</Text>
         <TouchableOpacity onPress={this.logout} style={styles.buttom}>
           <Text style={styles.buttomText}>Sair</Text>
         </TouchableOpacity>

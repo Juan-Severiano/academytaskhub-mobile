@@ -3,18 +3,45 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Card from '../components/CardYT'
 import tasksObj from '../components/tasks'
 import FilterYT from '../components/FilterYT'
+import { access } from '../commun'
 
 import style from '../style'
 
 export default class YourTasks extends Component {
   state = {
-    tasks: [...tasksObj]
+    tasks: []
+  }
+
+  conect = async () => {
+    console.clear();
+    const headers = {
+      authorization: access
+    };
+    const config = {
+      method: 'GET',
+      headers: headers,
+    };
+
+    const response = await fetch(
+      'https://academy-task-hub.onrender.com/auth/api/user/',
+      config
+    );
+    const persons = await fetch(
+      'https://academy-task-hub.onrender.com/client/api/person/',
+      config
+    );
+
+    const json = await response.json();
+    const person = await persons.json()
+
+    console.log('STATUS', response.status)
+    this.setState({ tasks: person.results[2].item_list })
   }
 
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <View style={styles.txtContainer}>
+        <View style={styles.txtContainer} onReady={this.conect()}>
           <Text style={styles.txt}>Suas Tarefas</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>

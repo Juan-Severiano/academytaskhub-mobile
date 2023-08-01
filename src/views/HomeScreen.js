@@ -23,14 +23,14 @@ export default class HomeScreen extends Component {
     };
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/itemlist',
+      'https://academy-task-hub.onrender.com/client/api/person',
       config
     );
 
     const json = await response.json();
 
     console.log('STATUS', response.status)
-    this.setState({ clients: json.results })
+    this.setState({ clients: json.results[2].item_list })
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class HomeScreen extends Component {
           To do
         </Text>
         <FlatList
-          data={data}
+          data={this.state.clients}
           keyExtractor={item => `${item.id}`}
           renderItem={({ item }) => {
             if (item.status === 'TODO') {
@@ -52,7 +52,7 @@ export default class HomeScreen extends Component {
         />
         <Text style={{ fontFamily: style.fontDefault, fontSize: 30 }}>Doing</Text>
         <FlatList
-          data={data}
+          data={this.state.clients}
           keyExtractor={item => `${item.id}`}
           renderItem={({ item }) => {
             if (item.status === 'DOING') {
@@ -64,7 +64,7 @@ export default class HomeScreen extends Component {
         />
         <Text style={{ fontFamily: style.fontDefault, fontSize: 30 }}>Done</Text>
         <FlatList
-          data={data}
+          data={this.state.clients}
           keyExtractor={item => `${item.id}`}
           renderItem={({ item }) => {
             if (item.status === 'DONE') {

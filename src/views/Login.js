@@ -11,23 +11,24 @@ export default class Login extends Component {
   }
 
   login = async () => {
-    console.clear();
-    const headers = {
-      authorization: access,
-      email: this.state.email,
-      password: this.state.password
-    };
-    const config = {
-      method: 'POST',
-      headers: headers,
-    };
+    // console.clear();
+    // const headers = {
+    //   authorization: access,
+    //   email: this.state.email,
+    //   password: this.state.password
+    // };
+    // const config = {
+    //   method: 'POST',
+    //   headers: headers,
+    // };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token',
-      config
-    );
-    console.log('STATUS', response.status)
-    console.log('STATUS', response)
+    // const response = await fetch(
+    //   'https://academy-task-hub.onrender.com/auth/api/token',
+    //   config
+    // );
+    // console.log('STATUS', response.status)
+    // console.log('STATUS', response)
+    this.props.navigation.navigate('Home')
   }
 
   render() {
