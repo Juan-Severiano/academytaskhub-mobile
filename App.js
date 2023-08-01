@@ -31,18 +31,17 @@ export default function App(props) {
     console.clear();
     const headers = {
       'Content-Type': 'application/json',
-    }
+    };
     const body = JSON.stringify({
-      "username": "admin",
-      "password": "admin"
+      "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MDkzNjA3OCwiaWF0IjoxNjkwODQ5Njc4LCJqdGkiOiI2OTNmNmEwMmNkYTc0YzEzYmY1YjM1MWJhODZhMzBjMCIsInVzZXJfaWQiOjN9.Yu6Tt2C4xc9INgL1zPBYlJ5MNoWAhPs13p6tah-67pw"
     });
     const config = {
-      method: 'POST',
+      method: 'post',
       headers: headers,
       body: body
-    }
+    };
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/refresh',
+      'https://academy-task-hub.onrender.com/auth/api/token/refresh/',
       config
     );
 

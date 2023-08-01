@@ -4,6 +4,7 @@ import Card from '../components/Card'
 import tasksObj from '../components/tasks'
 import data from '../../data'
 import style from '../style'
+import { access } from '../commun'
 
 export default class HomeScreen extends Component {
   state = {
@@ -14,7 +15,7 @@ export default class HomeScreen extends Component {
   conect = async () => {
     console.clear();
     const headers = {
-      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODUzMjc4LCJpYXQiOjE2OTA4NDk2NzgsImp0aSI6ImEyMWViZDQxZGFjNTQzYjM5OWJiOGQzYzkzY2Y0YmVkIiwidXNlcl9pZCI6M30.0rdze2PNIO5OmBXHnGGIWnjjOIfx5FCdzDUi2tbA9PM'
+      authorization: access
     };
     const config = {
       method: 'GET',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList, ScrollView } from 'react-native'
 import FilterComponent from '../components/Filter'
+import { access } from '../commun'
 
 import style from '../style'
 
@@ -14,7 +15,7 @@ export default class Filter extends Component {
   getFilters = async () => {
     console.clear();
     const headers = {
-      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODUzMjc4LCJpYXQiOjE2OTA4NDk2NzgsImp0aSI6ImEyMWViZDQxZGFjNTQzYjM5OWJiOGQzYzkzY2Y0YmVkIiwidXNlcl9pZCI6M30.0rdze2PNIO5OmBXHnGGIWnjjOIfx5FCdzDUi2tbA9PM'
+      authorization: access
     };
     const config = {
       method: 'GET',
