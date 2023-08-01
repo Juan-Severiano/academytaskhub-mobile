@@ -35,21 +35,21 @@ export default function App(props) {
     const body = JSON.stringify({
       "username": "admin",
       "password": "admin"
-    })
+    });
     const config = {
       method: 'POST',
       headers: headers,
       body: body
     }
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/refresh/',
+      'https://academy-task-hub.onrender.com/auth/api/token/refresh',
       config
     );
 
     const json = await response.json();
 
     console.log('STATUS', response.status);
-    console.log(json.access);
+    console.log(json);
   }
 
   let fontSize = 24;

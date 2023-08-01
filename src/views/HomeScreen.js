@@ -14,7 +14,7 @@ export default class HomeScreen extends Component {
   conect = async () => {
     console.clear();
     const headers = {
-      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODM3NTQ5LCJpYXQiOjE2OTA4MzM5NDksImp0aSI6IjM0YzIwZDVjMTZmZjRjMTI5NmIwNjgxZDQ3ZDMwZjI3IiwidXNlcl9pZCI6M30.Vpr5875d26WeBCHX8p6C8FCzhHtDOjT4OT9YGI5bL2I'
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODUzMjc4LCJpYXQiOjE2OTA4NDk2NzgsImp0aSI6ImEyMWViZDQxZGFjNTQzYjM5OWJiOGQzYzkzY2Y0YmVkIiwidXNlcl9pZCI6M30.0rdze2PNIO5OmBXHnGGIWnjjOIfx5FCdzDUi2tbA9PM'
     };
     const config = {
       method: 'GET',
@@ -30,7 +30,6 @@ export default class HomeScreen extends Component {
 
     console.log('STATUS', response.status)
     this.setState({ clients: json.results })
-    console.log(this.state.clients)
   }
 
   render() {

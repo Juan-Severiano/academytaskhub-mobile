@@ -7,13 +7,14 @@ import style from '../style'
 export default class Filter extends Component {
   state = {
     filterSearch: '',
-    filters: []
+    filters: [],
+    teachers: [],
   }
 
   getFilters = async () => {
     console.clear();
     const headers = {
-      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODM3NTQ5LCJpYXQiOjE2OTA4MzM5NDksImp0aSI6IjM0YzIwZDVjMTZmZjRjMTI5NmIwNjgxZDQ3ZDMwZjI3IiwidXNlcl9pZCI6M30.Vpr5875d26WeBCHX8p6C8FCzhHtDOjT4OT9YGI5bL2I'
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwODUzMjc4LCJpYXQiOjE2OTA4NDk2NzgsImp0aSI6ImEyMWViZDQxZGFjNTQzYjM5OWJiOGQzYzkzY2Y0YmVkIiwidXNlcl9pZCI6M30.0rdze2PNIO5OmBXHnGGIWnjjOIfx5FCdzDUi2tbA9PM'
     };
     const config = {
       method: 'GET',
@@ -24,12 +25,18 @@ export default class Filter extends Component {
       'https://academy-task-hub.onrender.com/client/api/discipline',
       config
     );
+    const teachers = await fetch(
+      'https://academy-task-hub.onrender.com/client/api/teacher',
+      config
+    );
 
     const json = await response.json();
+    const jsonTeacher = await teachers.json();
 
     console.log('STATUS', response.status)
     this.setState({ filters: json.results })
-    console.log(this.state.filters)
+    this.setState({ teachers: jsonTeacher.results })
+
   }
 
   add = (nome) => {
@@ -52,11 +59,18 @@ export default class Filter extends Component {
             data={this.state.filters}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => {
-              return <FilterComponent value={item} add={this.add} />
+              return <FilterComponent value={item.name} add={this.add} />
             }
             }
           />
-          <FilterComponent value='asd' add={this.add} />
+          <FlatList
+            data={this.state.teachers}
+            keyExtractor={item => `${item.id}`}
+            renderItem={({ item }) => {
+              return <FilterComponent value={item.name} add={this.add} />
+            }
+            }
+          />
         </ScrollView>
       </View>
     )
