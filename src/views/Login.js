@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { access } from '../commun'
+import { firstConnection, setAccess } from '../commun'
 import style from '../style'
 
 export default class Login extends Component {
@@ -11,24 +11,34 @@ export default class Login extends Component {
   }
 
   login = async () => {
-    // console.clear();
-    // const headers = {
-    //   authorization: access,
-    //   email: this.state.email,
-    //   password: this.state.password
-    // };
-    // const config = {
-    //   method: 'POST',
-    //   headers: headers,
-    // };
+    console.log('asdasdasdasd')
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const body = JSON.stringify({
+      "username": JSON.parse(`"${this.state.email}"`),
+      "password": JSON.parse(`"${this.state.password}"`)
+    });
+    const config = {
+      method: 'POST',
+      headers: headers,
+      body: body
+    };
+    const response = await fetch(
+      'https://academy-task-hub.onrender.com/auth/api/token/',
+      config
+    );
 
-    // const response = await fetch(
-    //   'https://academy-task-hub.onrender.com/auth/api/token',
-    //   config
-    // );
-    // console.log('STATUS', response.status)
-    // console.log('STATUS', response)
-    this.props.navigation.navigate('Home')
+    const json = await response.json();
+
+    console.log('STATUS', response.status);
+    console.log(json);
+    const access = setAccess(json.access)
+    setTimeout(() => {
+      if (response.status === 200) {
+        this.props.navigation.navigate('Home', { access: `${json.refresh}` })
+      }
+    }, 5000);
   }
 
   render() {

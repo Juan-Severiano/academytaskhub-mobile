@@ -12,33 +12,33 @@ export default class Filter extends Component {
     teachers: [],
   }
 
-  getFilters = async () => {
-    console.clear();
-    const headers = {
-      authorization: access
-    };
-    const config = {
-      method: 'GET',
-      headers: headers,
-    };
+  // getFilters = async () => {
+  //   console.clear();
+  //   const headers = {
+  //     authorization: access
+  //   };
+  //   const config = {
+  //     method: 'GET',
+  //     headers: headers,
+  //   };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/discipline',
-      config
-    );
-    const teachers = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/teacher',
-      config
-    );
+  //   const response = await fetch(
+  //     'https://academy-task-hub.onrender.com/client/api/discipline',
+  //     config
+  //   );
+  //   const teachers = await fetch(
+  //     'https://academy-task-hub.onrender.com/client/api/teacher',
+  //     config
+  //   );
 
-    const json = await response.json();
-    const jsonTeacher = await teachers.json();
+  //   const json = await response.json();
+  //   const jsonTeacher = await teachers.json();
 
-    console.log('STATUS', response.status)
-    this.setState({ filters: json.results })
-    this.setState({ teachers: jsonTeacher.results })
+  //   console.log('STATUS', response.status)
+  //   this.setState({ filters: json.results })
+  //   this.setState({ teachers: jsonTeacher.results })
 
-  }
+  // }
 
   add = (nome) => {
     this.setState({ filterSearch: nome })
@@ -55,7 +55,7 @@ export default class Filter extends Component {
           </View>
         </View>
         <Text style={styles.filterBy}>Filter By</Text>
-        <ScrollView contentContainerStyle={styles.filterContainer} onReady={this.getFilters()}>
+        <ScrollView contentContainerStyle={styles.filterContainer} >
           <FlatList
             data={this.state.filters}
             keyExtractor={item => `${item.id}`}

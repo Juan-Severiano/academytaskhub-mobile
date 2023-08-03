@@ -3,6 +3,10 @@ import { Alert } from 'react-native'
 const server = 'https://academy-task-hub.onrender.com'
 const access = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwOTMzOTg0LCJpYXQiOjE2OTA5MzAzODQsImp0aSI6IjVmNzMyYjdjNjIzMTRmOWRiMDk1Y2UxODE5NDlkN2MyIiwidXNlcl9pZCI6M30.DnoNC4-g-njKgBIrATtk3_yyKnvPyYu5V7rWMSZvj9k'
 
+function setAccess(access) {
+  return `Bearer ${access}`
+}
+
 function showError(error) {
   Alert.alert('Ops! Ocorreu um problema', `Mensagem ${error}`)
 }
@@ -35,14 +39,14 @@ const connectRefresh = async () => {
   console.log(json);
 }
 
-async function connect(username, password) {
+async function firstConnection(username, password) {
   console.clear();
   const headers = {
     'Content-Type': 'application/json',
   };
   const body = JSON.stringify({
-    "username": "admin",
-    "password": "admin"
+    "username": username,
+    "password": password
   });
   const config = {
     method: 'POST',
@@ -60,4 +64,4 @@ async function connect(username, password) {
   console.log(json.access);
 }
 
-export { server, showError, showSuccess, access, connectRefresh }
+export { server, showError, showSuccess, access, connectRefresh, firstConnection, setAccess }

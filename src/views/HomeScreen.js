@@ -13,9 +13,10 @@ export default class HomeScreen extends Component {
   }
 
   conect = async () => {
+    console.log(this.props)
     console.clear();
     const headers = {
-      authorization: access
+      authorization: this.props.route.params.access
     };
     const config = {
       method: 'GET',
@@ -35,7 +36,7 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }} {...this.conect()} >
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }} onReady={this.conect()} >
         <Text style={{ fontFamily: style.fontDefault, fontSize: 30, marginTop: 20}}>
           To do
         </Text>
