@@ -34,7 +34,7 @@ export default class YourTasks extends Component {
     const json = await response.json();
     const person = await persons.json()
 
-    console.log('STATUS', response.status)
+    console.log('STATUS YT', response.status)
     this.setState({ tasks: person.results[2].item_list })
   }
 

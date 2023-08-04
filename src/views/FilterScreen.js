@@ -34,7 +34,7 @@ export default class Filter extends Component {
     const json = await response.json();
     const jsonTeacher = await teachers.json();
 
-    console.log('STATUS filter', response.status, json.results, jsonTeacher.results)
+    console.log('STATUS filter', response.status  )
     this.setState({ filters: json.results })
     this.setState({ teachers: jsonTeacher.results })
 

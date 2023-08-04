@@ -35,8 +35,7 @@ export default class Login extends Component {
 
     const json = await response.json();
 
-    console.log('STATUS', response.status);
-    console.log(json);
+    console.log('STATUS Login', response.status);
     if (response.status === 200) {
       this.props.navigation.navigate('Home', { access: `${json.access}` })
     }

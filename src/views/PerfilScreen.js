@@ -37,8 +37,7 @@ export default class Perfil extends Component {
     const json = await response.json();
     const person = await persons.json()
 
-    console.log('STATUS', response.status)
-    console.log( 'user', json.results[2])
+    console.log('STATUS Profile', response.status)
     this.setState({ username: json.results[2].username, email: json.results[2].email })
   }
 

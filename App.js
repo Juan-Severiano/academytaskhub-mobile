@@ -30,9 +30,6 @@ export default function App(props) {
   let fontSize = 24;
   let paddingVertical = 6;
 
-  console.log("App", props.navigation.state.params)
-  // routeParams={props.route.params}
-
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
