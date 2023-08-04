@@ -19,6 +19,10 @@ export default class Login extends Component {
       "username": JSON.parse(`"${this.state.email}"`),
       "password": JSON.parse(`"${this.state.password}"`)
     });
+    // const body = JSON.stringify({
+    //   "username": "admin",
+    //   "password": "admin"
+    // });
     const config = {
       method: 'POST',
       headers: headers,
@@ -33,12 +37,9 @@ export default class Login extends Component {
 
     console.log('STATUS', response.status);
     console.log(json);
-    const access = setAccess(json.access)
-    setTimeout(() => {
-      if (response.status === 200) {
-        this.props.navigation.navigate('Home', { access: `${json.refresh}` })
-      }
-    }, 5000);
+    if (response.status === 200) {
+      this.props.navigation.navigate('Home', { access: `${json.access}` })
+    }
   }
 
   render() {

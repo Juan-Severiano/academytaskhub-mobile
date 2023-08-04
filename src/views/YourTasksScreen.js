@@ -15,7 +15,7 @@ export default class YourTasks extends Component {
   conect = async () => {
     console.clear();
     const headers = {
-      authorization: access
+      authorization: `Bearer ${this.props.route.params.access}`
     };
     const config = {
       method: 'GET',

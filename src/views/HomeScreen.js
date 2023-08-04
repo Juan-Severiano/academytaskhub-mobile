@@ -13,10 +13,10 @@ export default class HomeScreen extends Component {
   }
 
   conect = async () => {
-    console.log(this.props)
+    console.log('na home', this.props, this.props.route.params.access)
     console.clear();
     const headers = {
-      authorization: this.props.route.params.access
+      authorization: `Bearer ${this.props.route.params.access}`
     };
     const config = {
       method: 'GET',
@@ -31,6 +31,12 @@ export default class HomeScreen extends Component {
     const json = await response.json();
 
     console.log('STATUS', response.status)
+    console.log(json.results)
+
+    // if () {
+
+    // }
+
     this.setState({ clients: json.results[2].item_list })
   }
 

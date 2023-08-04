@@ -12,40 +12,40 @@ export default class Filter extends Component {
     teachers: [],
   }
 
-  // getFilters = async () => {
-  //   console.clear();
-  //   const headers = {
-  //     authorization: access
-  //   };
-  //   const config = {
-  //     method: 'GET',
-  //     headers: headers,
-  //   };
+  getFilters = async () => {
+    console.clear();
+    const headers = {
+      authorization: `Bearer ${this.props.route.params.access}`
+    };
+    const config = {
+      method: 'GET',
+      headers: headers,
+    };
 
-  //   const response = await fetch(
-  //     'https://academy-task-hub.onrender.com/client/api/discipline',
-  //     config
-  //   );
-  //   const teachers = await fetch(
-  //     'https://academy-task-hub.onrender.com/client/api/teacher',
-  //     config
-  //   );
+    const response = await fetch(
+      'https://academy-task-hub.onrender.com/client/api/discipline',
+      config
+    );
+    const teachers = await fetch(
+      'https://academy-task-hub.onrender.com/client/api/teacher',
+      config
+    );
 
-  //   const json = await response.json();
-  //   const jsonTeacher = await teachers.json();
+    const json = await response.json();
+    const jsonTeacher = await teachers.json();
 
-  //   console.log('STATUS', response.status)
-  //   this.setState({ filters: json.results })
-  //   this.setState({ teachers: jsonTeacher.results })
+    console.log('STATUS filter', response.status, json.results, jsonTeacher.results)
+    this.setState({ filters: json.results })
+    this.setState({ teachers: jsonTeacher.results })
 
-  // }
+  }
 
   add = (nome) => {
     this.setState({ filterSearch: nome })
   }
   render() {
     return (
-      <View style={styles.container} >
+      <View style={styles.container} onReady={this.getFilters()}>
         <View style={styles.filterArea}>
           <View style={{ height: 50 }}>
             <FilterComponent value={this.state.filterSearch} />

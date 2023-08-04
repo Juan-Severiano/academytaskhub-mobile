@@ -10,8 +10,11 @@ import Perfil from '../views/PerfilScreen'
 
 const Tab = createBottomTabNavigator()
 
+
+
 export default props => (
   <Tab.Navigator
+  onReady={console.log('tab', props)}
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName
@@ -50,11 +53,11 @@ export default props => (
       headerShown: false,
     })}
  >
-    <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ tabBarLabel: 'Tarefas' }} />
-    <Tab.Screen name='Filter' component={Filter} options={{ tabBarLabel: 'Filter' }} />
-    <Tab.Screen name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
-    <Tab.Screen name='YourTasks' component={YourTasks} options={{ tabBarLabel: 'YourTasks' }} />
-    <Tab.Screen name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
+    <Tab.Screen name='HomeScreen' initialParams={{ access: props.routeParams.access }} component={HomeScreen} options={{ tabBarLabel: 'Tarefas' }} />
+    <Tab.Screen name='Filter' initialParams={{ access: props.routeParams.access }} component={Filter} options={{ tabBarLabel: 'Filter' }} />
+    <Tab.Screen initialParams={{ access: props.routeParams.access }} name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
+    <Tab.Screen initialParams={{ access: props.routeParams.access }} name='YourTasks' component={YourTasks} options={{ tabBarLabel: 'YourTasks' }} />
+    <Tab.Screen initialParams={{ access: props.routeParams.access }} name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
 
 
   </Tab.Navigator>

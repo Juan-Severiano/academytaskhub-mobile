@@ -30,6 +30,9 @@ export default function App(props) {
   let fontSize = 24;
   let paddingVertical = 6;
 
+  console.log("App", props.navigation.state.params)
+  // routeParams={props.route.params}
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -37,7 +40,7 @@ export default function App(props) {
       <SafeAreaView style={{ flex: 1, backgroundColor: '#d9d9d9' }}>
         <Header />
         <NavigationContainer >
-          <Navigation natigation2={props.navigation} />
+          <Navigation natigation2={props.navigation} routeParams={props.navigation.state.params} />
         </NavigationContainer>
       </SafeAreaView>
     );
