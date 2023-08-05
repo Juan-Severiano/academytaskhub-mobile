@@ -18,7 +18,7 @@ export default class Add extends Component {
     showDatePicker: false,
     teachersData: [],
     disciplineData: [],
-    stateData: ['To Do', 'Doing', 'Done'],
+    stateData: ['TODO', 'DOING', 'DONE'],
     selectedTeacher: null,
     selectedDiscipline: null,
     selectedState: null,
@@ -77,7 +77,7 @@ export default class Add extends Component {
 
     const json = await response.json();
 
-    console.log('STATUS add', response.status)
+    console.log('STATUS addsend', response.status)
     console.log(json)
   }
 
