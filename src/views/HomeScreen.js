@@ -23,14 +23,14 @@ export default class HomeScreen extends Component {
     };
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person',
+      'https://academy-task-hub.onrender.com/client/api/person/me',
       config
     );
 
     const json = await response.json();
 
     console.log('STATUS home', response.status)
-    this.setState({ clients: json.results[2].item_list })
+    this.setState({ clients: json.item_list })
   }
 
   render() {

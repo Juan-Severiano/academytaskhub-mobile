@@ -23,19 +23,14 @@ export default class YourTasks extends Component {
     };
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/user/',
-      config
-    );
-    const persons = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person/',
+      'https://academy-task-hub.onrender.com/client/api/person/me',
       config
     );
 
     const json = await response.json();
-    const person = await persons.json()
 
     console.log('STATUS YT', response.status)
-    this.setState({ tasks: person.results[2].item_list })
+    this.setState({ tasks: json.item_list })
   }
 
   render() {

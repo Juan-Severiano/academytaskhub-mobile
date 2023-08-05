@@ -26,19 +26,14 @@ export default class Perfil extends Component {
     };
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/user/',
-      config
-    );
-    const persons = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person/',
+      'https://academy-task-hub.onrender.com/client/api/person/me',
       config
     );
 
     const json = await response.json();
-    const person = await persons.json()
 
     console.log('STATUS Profile', response.status)
-    this.setState({ username: json.results[2].username, email: json.results[2].email })
+    this.setState({ username: json.user.username, email: json.user.email })
   }
 
   render() {

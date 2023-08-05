@@ -29,15 +29,18 @@ export default class Login extends Component {
       body: body
     };
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/',
+      'https://academy-task-hub.onrender.com/auth/api/token/?email=True',
       config
     );
 
     const json = await response.json();
 
     console.log('STATUS Login', response.status);
+    console.log(json)
     if (response.status === 200) {
       this.props.navigation.navigate('Home', { access: `${json.access}` })
+    } else if (response.status === 400) {
+      return <Text>{json.datail}</Text>
     }
   }
 
