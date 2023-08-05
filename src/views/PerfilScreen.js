@@ -10,9 +10,12 @@ export default class Perfil extends Component {
     username: '',
     email: ''
   }
-
+  
   logout = () => {
-    this.props.navigation.navigate('Auth')
+    this.props.navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }], // Navegar para a tela de login (rota inicial)
+    });
   }
 
   conect = async () => {

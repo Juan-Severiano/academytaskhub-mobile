@@ -55,7 +55,7 @@ export default class Filter extends Component {
           </View>
         </View>
         <Text style={styles.filterBy}>Filter By</Text>
-        <ScrollView contentContainerStyle={styles.filterContainer} >
+        <View style={styles.filterContainer}>
           <FlatList
             data={this.state.filters}
             keyExtractor={item => `${item.id}`}
@@ -72,7 +72,7 @@ export default class Filter extends Component {
             }
             }
           />
-        </ScrollView>
+        </View>
       </View>
     )
   }

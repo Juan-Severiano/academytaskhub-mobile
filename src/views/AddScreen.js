@@ -51,7 +51,7 @@ export default class Add extends Component {
     this.setState({ teachersData: jsonTeacher.results })
   }
 
-  sendTask = async () => {
+  sendTask = async () => { 
     const headers = {
       authorization: `Bearer ${this.props.route.params.access}`,
       'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export default class Add extends Component {
     const json = await response.json();
 
     console.log('STATUS addsend', response.status)
-    console.log(json)
+    console.log('Enviou?', json.results)
   }
 
   handleDateChange = (event, date) => {
@@ -113,7 +113,7 @@ export default class Add extends Component {
             <View>
               <Text style={{ fontFamily: style.fontDefault }}>Data de Entrega</Text>
               <Text style={{ fontFamily: style.fontMedium }}>
-                {moment(this.state.selectedDate).format('YYYY-MM-DD')}
+                {moment(this.state.selectedDate).format('ddd D [de] MMMM [de] YYYY')}
               </Text>
             </View>
             <Ionicons name='calendar-outline' size={20} color='#343a40' />
@@ -121,7 +121,7 @@ export default class Add extends Component {
           {this.state.showDatePicker && (
             <DateTimePicker
               value={this.state.selectedDate}
-              mode="datetime"
+              mode="date"
               display="default"
               onChange={this.handleDateChange}
               style={{ fontFamily: style.fontDefault }}

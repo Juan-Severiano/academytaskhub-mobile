@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styles from '../style'
+import moment from 'moment'
 
 export default props => (
     <View style={style.card}>
@@ -26,7 +27,7 @@ export default props => (
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Ionicons name='calendar-outline' color='#000' size={20} />
-        <Text style={(style.cardDescription, style.cardInfoText)}>{ props.due_date }</Text>
+      <Text style={(style.cardDescription, style.cardInfoText)}>{moment(props.due_date).format('ddd D [de] MMMM [de] YYYY')  }</Text>
       </View>
     </View>
 )

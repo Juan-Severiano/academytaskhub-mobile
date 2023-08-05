@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking, FlatList } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { firstConnection, setAccess } from '../commun'
 import style from '../style'
@@ -8,6 +8,8 @@ export default class Login extends Component {
   state = {
     email: '',
     password: '',
+    showError: false,
+    errors: []
   }
 
   login = async () => {
@@ -40,7 +42,13 @@ export default class Login extends Component {
     if (response.status === 200) {
       this.props.navigation.navigate('Home', { access: `${json.access}` })
     } else if (response.status === 400) {
-      return <Text>{json.datail}</Text>
+      this.setState({ showError: true })
+      const errors = []
+      json.username ? errors.push(`Email: ${json.username}`) : null
+      json.password ? errors.push(`Senha: ${json.password}`) : null
+      json.detail ? errors.push(`Erro: ${json.detail}`) : null
+      console.log(errors)
+      this.setState({ errors })
     }
   }
 
@@ -63,6 +71,14 @@ export default class Login extends Component {
           value={this.state.password}
           onChangeText={password => this.setState({ password })}
         />
+        {this.state.showError ? 
+          <View style={styles.buttomError}>
+          <FlatList
+            data={this.state.errors}
+            keyExtractor={item => `${item.id}`}
+            renderItem={({ item }) => {
+                return <Text style={styles.buttomTextError}><Ionicons name='close' size={20} />{item}</Text>
+              }} /></View> : null}
         <TouchableOpacity onPress={this.login} style={styles.buttom}>
           <Text style={styles.buttomText}>Entrar  <Ionicons name='send' size={20} color='#fff' /></Text>
         </TouchableOpacity>
@@ -97,6 +113,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  buttomError: {
+    marginTop: 10,
+    padding: 10,
+    borderWidth: 5,
+    borderColor: '#dc3545',
+    width: '80%',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttomTextError: {
+    fontSize: 10,
+    color: '#dc3545',
+    fontFamily: style.fontDefault,
   },
   buttomText: {
     fontSize: 20,

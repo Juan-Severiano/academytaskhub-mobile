@@ -57,7 +57,7 @@ export default props => (
     <Tab.Screen name='Filter' initialParams={{ access: props.routeParams.access }} component={Filter} options={{ tabBarLabel: 'Filter' }} />
     <Tab.Screen initialParams={{ access: props.routeParams.access }} name='Add' component={Add} options={{ tabBarLabel: 'Add' }} />
     <Tab.Screen initialParams={{ access: props.routeParams.access }} name='YourTasks' component={YourTasks} options={{ tabBarLabel: 'YourTasks' }} />
-    <Tab.Screen initialParams={{ access: props.routeParams.access }} name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
+    <Tab.Screen initialParams={{ access: props.routeParams.access }} name='Perfil' component={Perfil} options={{ tabBarLabel: 'Perfil' }} navigation={props.navigation} />
 
 
   </Tab.Navigator>
