@@ -6,8 +6,7 @@ import moment from 'moment'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Button } from 'react-native-elements'
 import style from '../style'
-
-const countries = ["Egypt", "Canada", "Australia", "Ireland"]
+import axios from 'axios'
 
 export default class Add extends Component {
   state = {
@@ -18,7 +17,7 @@ export default class Add extends Component {
     showDatePicker: false,
     teachersData: [],
     disciplineData: [],
-    stateData: ['TODO', 'DOING', 'DONE'],
+    stateData: [ "TODO", "DOING", "DONE" ],
     selectedTeacher: null,
     selectedDiscipline: null,
     selectedState: null,
@@ -46,39 +45,41 @@ export default class Add extends Component {
     const json = await response.json();
     const jsonTeacher = await teachers.json();
 
-    console.log('STATUS add', response.status)
+    console.log('STATUS ad', response.status)
     this.setState({ disciplineData: json.results })
     this.setState({ teachersData: jsonTeacher.results })
   }
 
-  sendTask = async () => { 
+  sendTask = async () => {
     const headers = {
       authorization: `Bearer ${this.props.route.params.access}`,
       'Content-Type': 'application/json',
-    };
+    }
+
     const body = JSON.stringify({
       "title": JSON.parse(`"${this.state.title}"`),
       "content": JSON.parse(`"${this.state.text}"`),
-      "due_date": JSON.parse(`"${moment(this.state.selectedDate).format('YYYY-M-D')}"`),
+      "due_date": JSON.parse(`"${moment(this.state.selectedDate).format('YYYY-MM-DD')}"`),
       "status": JSON.parse(`"${this.state.selectedState}"`),
-      "discipline": JSON.parse(`"${this.state.selectedDiscipline.id}"`),
-      "teacher": JSON.parse(`"${this.state.selectedTeacher.id}"`),
-    });
+      "type": "P",
+      "discipline": Number(this.state.selectedDiscipline.id),
+      "teacher": Number(this.state.selectedTeacher.id)
+    })
+
     const config = {
       method: 'POST',
       headers: headers,
       body: body,
-    };
+    }
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/itemlist',
+      'https://academy-task-hub.onrender.com/client/api/itemlist/',
       config
-    );
+    )
 
     const json = await response.json();
 
     console.log('STATUS addsend', response.status)
-    console.log('Enviou?', json.results)
   }
 
   handleDateChange = (event, date) => {
@@ -113,7 +114,7 @@ export default class Add extends Component {
             <View>
               <Text style={{ fontFamily: style.fontDefault }}>Data de Entrega</Text>
               <Text style={{ fontFamily: style.fontMedium }}>
-                {moment(this.state.selectedDate).format('ddd D [de] MMMM [de] YYYY')}
+                {moment(this.state.selectedDate).format('YYYY-MM-DD')}
               </Text>
             </View>
             <Ionicons name='calendar-outline' size={20} color='#343a40' />

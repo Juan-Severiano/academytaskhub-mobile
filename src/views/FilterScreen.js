@@ -60,7 +60,7 @@ export default class Filter extends Component {
             data={this.state.filters}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => {
-              return <FilterComponent value={item.name} add={this.add} />
+              return <FilterComponent value={`${item.name} ${item.id}`} add={this.add} />
             }
             }
           />
@@ -68,7 +68,7 @@ export default class Filter extends Component {
             data={this.state.teachers}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => {
-              return <FilterComponent value={item.name} add={this.add} />
+              return <FilterComponent value={`${item.name} ${item.id}`} add={this.add} />
             }
             }
           />

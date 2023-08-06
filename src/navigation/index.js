@@ -2,15 +2,12 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import HomeScreen from '../views/HomeScreen'
-import testScreen from '../views/testScreen'
 import Filter from '../views/FilterScreen'
 import YourTasks from '../views/YourTasksScreen'
 import Add from '../views/AddScreen'
 import Perfil from '../views/PerfilScreen'
 
 const Tab = createBottomTabNavigator()
-
-
 
 export default props => (
   <Tab.Navigator
