@@ -35,7 +35,7 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }} onReady={this.conect()} >
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }} onReady={this.conect()}>
         <Text style={{ fontFamily: style.fontDefault, fontSize: 30, marginTop: 20}}>
           To do
         </Text>

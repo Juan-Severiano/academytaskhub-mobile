@@ -41,7 +41,7 @@ export default class Login extends Component {
     console.log(json)
     if (response.status === 200) {
       this.props.navigation.navigate('Home', { access: `${json.access}` })
-    } else if (response.status === 400) {
+    } else if (response.status === 400 || response.status === 401) {
       this.setState({ showError: true })
       const errors = []
       json.username ? errors.push(`Email: ${json.username}`) : null

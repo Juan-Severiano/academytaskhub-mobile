@@ -23,11 +23,11 @@ export default class Filter extends Component {
     };
 
     const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/discipline',
+      'https://academy-task-hub.onrender.com/client/api/discipline/',
       config
     );
     const teachers = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/teacher',
+      'https://academy-task-hub.onrender.com/client/api/teacher/',
       config
     );
 
@@ -37,7 +37,6 @@ export default class Filter extends Component {
     console.log('STATUS filter', response.status  )
     this.setState({ filters: json.results })
     this.setState({ teachers: jsonTeacher.results })
-
   }
 
   add = (nome) => {
@@ -60,7 +59,7 @@ export default class Filter extends Component {
             data={this.state.filters}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => {
-              return <FilterComponent value={`${item.name} ${item.id}`} add={this.add} />
+              return <FilterComponent value={item.name} add={this.add} />
             }
             }
           />
@@ -68,7 +67,7 @@ export default class Filter extends Component {
             data={this.state.teachers}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => {
-              return <FilterComponent value={`${item.name} ${item.id}`} add={this.add} />
+              return <FilterComponent value={item.name} add={this.add} />
             }
             }
           />
