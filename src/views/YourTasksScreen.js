@@ -4,6 +4,7 @@ import Card from '../components/CardYT'
 import tasksObj from '../components/tasks'
 import FilterYT from '../components/FilterYT'
 import { access } from '../commun'
+import axios from 'axios'
 
 import style from '../style'
 
@@ -14,24 +15,29 @@ export default class YourTasks extends Component {
 
   conect = async () => {
     console.clear();
+
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`
+      Authorization: `Bearer ${this.props.route.params.access}`,
     };
+
     const config = {
-      method: 'GET',
       headers: headers,
     };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person/me',
-      config
-    );
+    try {
+      const response = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/person/me',
+        config
+      );
 
-    const json = await response.json();
+      console.log('STATUS YT', response.status);
 
-    console.log('STATUS YT', response.status)
-    this.setState({ tasks: json.item_list })
+      this.setState({ tasks: response.data.item_list });
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
+
 
   render() {
     return (

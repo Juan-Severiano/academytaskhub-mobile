@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { access } from '../commun'
+import axios from 'axios'
 
 import style from '../style'
 
@@ -20,23 +21,30 @@ export default class Perfil extends Component {
 
   conect = async () => {
     console.clear();
+
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`
+      Authorization: `Bearer ${this.props.route.params.access}`,
     };
+
     const config = {
-      method: 'GET',
       headers: headers,
     };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person/me',
-      config
-    );
+    try {
+      const response = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/person/me',
+        config
+      );
 
-    const json = await response.json();
+      console.log('STATUS Profile', response.status);
 
-    console.log('STATUS Profile', response.status)
-    this.setState({ username: json.user.username, email: json.user.email })
+      this.setState({
+        username: response.data.user.username,
+        email: response.data.user.email,
+      });
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
 
   render() {

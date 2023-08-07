@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList, ScrollView } from 'react-native'
 import FilterComponent from '../components/Filter'
 import { access } from '../commun'
+import axios from 'axios'
 
 import style from '../style'
 
@@ -14,29 +15,33 @@ export default class Filter extends Component {
 
   getFilters = async () => {
     console.clear();
+
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`
+      Authorization: `Bearer ${this.props.route.params.access}`,
     };
+
     const config = {
-      method: 'GET',
       headers: headers,
     };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/discipline/',
-      config
-    );
-    const teachers = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/teacher/',
-      config
-    );
+    try {
+      const response = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/discipline/',
+        config
+      );
 
-    const json = await response.json();
-    const jsonTeacher = await teachers.json();
+      const teachers = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/teacher/',
+        config
+      );
 
-    console.log('STATUS filter', response.status  )
-    this.setState({ filters: json.results })
-    this.setState({ teachers: jsonTeacher.results })
+      console.log('STATUS filter', response.status);
+
+      this.setState({ filters: response.data.results });
+      this.setState({ teachers: teachers.data.results });
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
 
   add = (nome) => {

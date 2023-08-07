@@ -25,61 +25,62 @@ export default class Add extends Component {
 
   getFilters = async () => {
     console.clear();
+
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`
+      Authorization: `Bearer ${this.props.route.params.access}`,
     };
+
     const config = {
-      method: 'GET',
       headers: headers,
     };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/discipline',
-      config
-    );
-    const teachers = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/teacher',
-      config
-    );
+    try {
+      const response = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/discipline',
+        config
+      );
 
-    const json = await response.json();
-    const jsonTeacher = await teachers.json();
+      const teachers = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/teacher',
+        config
+      );
 
-    console.log('STATUS ad', response.status)
-    this.setState({ disciplineData: json.results })
-    this.setState({ teachersData: jsonTeacher.results })
+      console.log('STATUS ad', response.status);
+
+      this.setState({ disciplineData: response.data.results });
+      this.setState({ teachersData: teachers.data.results });
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
 
   sendTask = async () => {
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`,
+      Authorization: `Bearer ${this.props.route.params.access}`,
       'Content-Type': 'application/json',
+    };
+
+    const data = {
+      title: this.state.title,
+      content: this.state.text,
+      due_date: moment(this.state.selectedDate).format('YYYY-MM-DD'),
+      status: this.state.selectedState,
+      type: 'P',
+      discipline: Number(this.state.selectedDiscipline.id),
+      teacher: Number(this.state.selectedTeacher.id),
+    };
+
+    try {
+      const response = await axios.post(
+        'https://academy-task-hub.onrender.com/client/api/itemlist/',
+        data,
+        { headers }
+      );
+
+      console.log('STATUS addsend', response.status);
+    } catch (error) {
+      console.error('Erro na requisição:', error);
     }
-
-    const body = JSON.stringify({
-      "title": JSON.parse(`"${this.state.title}"`),
-      "content": JSON.parse(`"${this.state.text}"`),
-      "due_date": JSON.parse(`"${moment(this.state.selectedDate).format('YYYY-MM-DD')}"`),
-      "status": JSON.parse(`"${this.state.selectedState}"`),
-      "type": "P",
-      "discipline": Number(this.state.selectedDiscipline.id),
-      "teacher": Number(this.state.selectedTeacher.id)
-    })
-
-    const config = {
-      method: 'POST',
-      headers: headers,
-      body: body,
-    }
-
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/itemlist/',
-      config
-    )
-
-    const json = await response.json();
-
-    console.log('STATUS addsend', response.status)
   }
 
   handleDateChange = (event, date) => {

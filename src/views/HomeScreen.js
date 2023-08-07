@@ -5,6 +5,7 @@ import tasksObj from '../components/tasks'
 import data from '../../data'
 import style from '../style'
 import { access } from '../commun'
+import axios from 'axios'
 
 export default class HomeScreen extends Component {
   state = {
@@ -14,23 +15,27 @@ export default class HomeScreen extends Component {
 
   conect = async () => {
     console.clear();
+
     const headers = {
-      authorization: `Bearer ${this.props.route.params.access}`
+      Authorization: `Bearer ${this.props.route.params.access}`,
     };
+
     const config = {
-      method: 'GET',
       headers: headers,
     };
 
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/client/api/person/me',
-      config
-    );
+    try {
+      const response = await axios.get(
+        'https://academy-task-hub.onrender.com/client/api/person/me',
+        config
+      );
 
-    const json = await response.json();
+      console.log('STATUS home', response.status);
 
-    console.log('STATUS home', response.status)
-    this.setState({ clients: json.item_list })
+      this.setState({ clients: response.data.item_list });
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
 
   render() {

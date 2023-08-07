@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking, FlatList 
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { firstConnection, setAccess } from '../commun'
 import style from '../style'
+import axios from 'axios'
 
 export default class Login extends Component {
   state = {
@@ -13,42 +14,40 @@ export default class Login extends Component {
   }
 
   login = async () => {
-    console.log('asdasdasdasd')
+    console.log('asdasdasdasd');
+
     const headers = {
       'Content-Type': 'application/json',
     };
-    const body = JSON.stringify({
-      "username": JSON.parse(`"${this.state.email}"`),
-      "password": JSON.parse(`"${this.state.password}"`)
-    });
-    // const body = JSON.stringify({
-    //   "username": "admin",
-    //   "password": "admin"
-    // });
-    const config = {
-      method: 'POST',
-      headers: headers,
-      body: body
+
+    const data = {
+      username: this.state.email,
+      password: this.state.password,
     };
-    const response = await fetch(
-      'https://academy-task-hub.onrender.com/auth/api/token/?email=True',
-      config
-    );
 
-    const json = await response.json();
+    try {
+      const response = await axios.post(
+        'https://academy-task-hub.onrender.com/auth/api/token/?email=True',
+        data,
+        { headers }
+      );
 
-    console.log('STATUS Login', response.status);
-    console.log(json)
-    if (response.status === 200) {
-      this.props.navigation.navigate('Home', { access: `${json.access}` })
-    } else if (response.status === 400 || response.status === 401) {
-      this.setState({ showError: true })
-      const errors = []
-      json.username ? errors.push(`Email: ${json.username}`) : null
-      json.password ? errors.push(`Senha: ${json.password}`) : null
-      json.detail ? errors.push(`Erro: ${json.detail}`) : null
-      console.log(errors)
-      this.setState({ errors })
+      console.log('STATUS Login', response.status);
+      console.log(response.data);
+
+      if (response.status === 200) {
+        this.props.navigation.navigate('Home', { access: response.data.access });
+      } else if (response.status === 400 || response.status === 401) {
+        this.setState({ showError: true });
+        const errors = [];
+        response.data.username ? errors.push(`Email: ${response.data.username}`) : null;
+        response.data.password ? errors.push(`Senha: ${response.data.password}`) : null;
+        response.data.detail ? errors.push(`Erro: ${response.data.detail}`) : null;
+        console.log(errors);
+        this.setState({ errors });
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
     }
   }
 
