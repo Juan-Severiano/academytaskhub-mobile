@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Dimensions, FlatList, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, FlatList, ScrollView, RefreshControl } from 'react-native'
 import Card from '../components/Card'
 import tasksObj from '../components/tasks'
 import data from '../../data'
@@ -11,9 +11,11 @@ export default class HomeScreen extends Component {
   state = {
     tasks: [...tasksObj],
     clients: [],
+    refreshing: false
   }
 
   conect = async () => {
+    this.setState({ refreshing: true });
     console.clear();
 
     const headers = {
@@ -36,12 +38,23 @@ export default class HomeScreen extends Component {
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000);
   }
 
   render() {
     return (
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }} onReady={this.conect()}>
-        <Text style={{ fontFamily: style.fontDefault, fontSize: 30, marginTop: 20}}>
+      <ScrollView 
+        contentContainerStyle={{ alignItems: 'center' }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.conect}
+          />
+        }
+      >
+        <Text style={{ fontFamily: style.fontDefault, fontSize: 30, marginTop: 20 }}>
           To do
         </Text>
         <FlatList

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SelectDropdown from 'react-native-select-dropdown'
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, Platform, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, Platform, ScrollView, RefreshControl } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import moment from 'moment'
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -21,9 +21,11 @@ export default class Add extends Component {
     selectedTeacher: null,
     selectedDiscipline: null,
     selectedState: null,
+    refreshing: false
   }
 
   getFilters = async () => {
+    this.setState({ refreshing: true })
     console.clear();
 
     const headers = {
@@ -52,6 +54,9 @@ export default class Add extends Component {
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
+    setTimeout(() => {
+      this.setState({ refreshing: false })
+    }, 1000);
   }
 
   sendTask = async () => {
@@ -92,7 +97,15 @@ export default class Add extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container} onReady={this.getFilters()}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.getFilters}
+          />
+        }
+      >
         <View style={styles.txtContainer}>
           <Text style={styles.txt}>Criar suas Tarefas</Text>
         </View>

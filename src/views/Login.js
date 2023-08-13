@@ -27,7 +27,7 @@ export default class Login extends Component {
 
     try {
       const response = await axios.post(
-        'https://academy-task-hub.onrender.com/auth/api/token/?email=True',
+        'https://academy-task-hub.onrender.com/auth/api/token/',
         data,
         { headers }
       );

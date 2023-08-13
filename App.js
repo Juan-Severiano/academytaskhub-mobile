@@ -16,6 +16,7 @@ import {
   Poppins_800ExtraBold,
   Poppins_800ExtraBold_Italic,
 } from '@expo-google-fonts/poppins';
+import PullToRefreshExample from './src/components/Refresh'
 
 export default function App(props) {
   let [fontsLoaded] = useFonts({

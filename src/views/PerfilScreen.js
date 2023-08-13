@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { access } from '../commun'
 import axios from 'axios'
@@ -9,9 +9,10 @@ import style from '../style'
 export default class Perfil extends Component {
   state = {
     username: '',
-    email: ''
+    email: '',
+    refreshing: false
   }
-  
+
   logout = () => {
     this.props.navigation.reset({
       index: 0,
@@ -20,6 +21,7 @@ export default class Perfil extends Component {
   }
 
   conect = async () => {
+    this.setState({ refreshing: true })
     console.clear();
 
     const headers = {
@@ -45,19 +47,30 @@ export default class Perfil extends Component {
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000);
   }
 
   render() {
     const options = { email: 'sla@aluno.ce.gov.br', secure: true }
     return (
-      <View style={styles.container} onReady={this.conect()}>
+      <ScrollView
+        contentContainerStyle={{ alignItems: 'center' }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.conect}
+          />
+        }
+      >
         <Ionicons name='person-circle-outline' style={styles.avatar} size={200} color='#000' />
         <Text style={styles.nickname}>{this.state.username}</Text>
         <Text style={styles.email}>{this.state.email}</Text>
         <TouchableOpacity onPress={this.logout} style={styles.buttom}>
           <Text style={styles.buttomText}>Sair</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -75,7 +88,7 @@ const styles = StyleSheet.create({
   },
   email: {
     marginTop: 10,
-    fontSize: 20, 
+    fontSize: 20,
     alignItems: 'center',
     fontFamily: style.fontMedium
   },

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, FlatList } from 'react-native'
+import { Text, View, StyleSheet, FlatList, RefreshControl } from 'react-native'
 import Card from '../components/CardYT'
 import tasksObj from '../components/tasks'
 import FilterYT from '../components/FilterYT'
@@ -7,13 +7,16 @@ import { access } from '../commun'
 import axios from 'axios'
 
 import style from '../style'
+import { ScrollView } from 'react-navigation'
 
 export default class YourTasks extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    refreshing: false
   }
 
   conect = async () => {
+    this.setState({ refreshing: true })
     console.clear();
 
     const headers = {
@@ -36,13 +39,24 @@ export default class YourTasks extends Component {
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000);
   }
 
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center' }}>
-        <View style={styles.txtContainer} onReady={this.conect()}>
+        <ScrollView
+          contentContainerStyle={{ flex: 1, alignItems: 'center' }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.conect}
+            />
+          }
+        >
+        <View style={styles.txtContainer}>
           <Text style={styles.txt}>Suas Tarefas</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
@@ -57,7 +71,7 @@ export default class YourTasks extends Component {
             <Card id={item.id} {...item} />
           }
         />
-      </View>
+      </ScrollView>
     )
   }
 }

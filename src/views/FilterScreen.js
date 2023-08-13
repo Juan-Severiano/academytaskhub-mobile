@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, FlatList, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, FlatList, ScrollView, RefreshControl } from 'react-native'
 import FilterComponent from '../components/Filter'
 import { access } from '../commun'
 import axios from 'axios'
@@ -11,9 +11,11 @@ export default class Filter extends Component {
     filterSearch: '',
     filters: [],
     teachers: [],
+    refreshing: false
   }
 
   getFilters = async () => {
+    this.setState({ refreshing: true })
     console.clear();
 
     const headers = {
@@ -42,6 +44,9 @@ export default class Filter extends Component {
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000);
   }
 
   add = (nome) => {
@@ -49,7 +54,15 @@ export default class Filter extends Component {
   }
   render() {
     return (
-      <View style={styles.container} onReady={this.getFilters()}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.getFilters}
+          />
+        }
+      >
         <View style={styles.filterArea}>
           <View style={{ height: 50 }}>
             <FilterComponent value={this.state.filterSearch} />
@@ -77,7 +90,7 @@ export default class Filter extends Component {
             }
           />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 } 
